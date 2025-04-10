@@ -7,40 +7,40 @@ This checklist outlines the core and bonus features to build and submit your bee
 ## ✅ Core Functionality
 
 ### 🐝 Hive Logger Screen
-- [ ] Create Hive Log screen UI
-- [ ] Inputs: Hive ID, Date, Number of Colonies, Auto-detected Location
-- [ ] Save hive log data to SQLite
-- [ ] Prevent duplicate Hive IDs
-- [ ] Validate all fields before saving
+- [✅] Create Hive Log screen UI
+- [✅] Inputs: Hive ID, Date, Number of Colonies, Auto-detected Location
+- [✅] Save hive log data to SQLite
+- [✅] Prevent duplicate Hive IDs
+- [✅] Validate all fields before saving
 
 ### 🌾 Crop Opportunities Screen
-- [ ] Load crop data from local JSON or DB
-- [ ] Calculate and show distance from user
+- [✅] Load crop data from local DB
+- [✅] Calculate and show distance from user
 - [ ] Filter by current & upcoming flowering window
 - [ ] Display:
-  - [ ] Crop name
-  - [ ] Flowering window (start–end)
-  - [ ] Distance
-  - [ ] Recommended hive density
+  - [✅] Crop name
+  - [✅] Flowering window (start–end)
+  - [✅] Distance
+  - [✅] Recommended hive density
 - [ ] Handle empty state: No crops in range
 
 ### 📖 Hive History Screen
-- [ ] Show all previously logged hive placements
+- [✅] Show all previously logged hive placements
 - [ ] Allow filtering:
   - [ ] By Date
   - [ ] By Crop name (optional if associated)
   - [ ] By Location radius (bonus)
-- [ ] Allow deleting a hive log
-- [ ] Allow marking a hive as “Ready to Migrate”
+- [✅] Allow deleting a hive log
+- [✅] Allow marking a hive as “Ready to Migrate”
 
 ### 📍 Location Permissions
-- [ ] Request foreground location permission
+- [✅] Request foreground location permission
 - [ ] Handle denial, revoke, or “never ask again” case
 - [ ] Fallback to manual location entry
 
 ### 📡 Offline Functionality
-- [ ] Ensure all core features work without internet
-- [ ] Cache crop data locally
+- [✅] Ensure all core features work without internet
+- [✅] Cache crop data locally
 - [ ] Show offline banner
 - [ ] Add retry mechanism when connection resumes
 
@@ -57,8 +57,8 @@ This checklist outlines the core and bonus features to build and submit your bee
 
 ## 🧪 Dev & Testing Checklist
 - [ ] Create mock crop JSON data
-- [ ] Insert dummy Hive Logs for testing
-- [ ] Use consistent TypeScript types for all queries
+- [✅] Insert dummy Hive Logs for testing
+- [✅] Use consistent TypeScript types for all queries
 - [ ] Add debug tools (test insert/delete/view logs)
 - [ ] Handle app resume (background → foreground)
 - [ ] Show UI for:
