@@ -1,50 +1,78 @@
-# Welcome to your Expo app 👋
+# 🐝 HumbleBee App Development Checklist
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This checklist outlines the core and bonus features to build and submit your beekeeping tracker app.
 
-## Get started
+---
 
-1. Install dependencies
+## ✅ Core Functionality
 
-   ```bash
-   npm install
-   ```
+### 🐝 Hive Logger Screen
+- [ ] Create Hive Log screen UI
+- [ ] Inputs: Hive ID, Date, Number of Colonies, Auto-detected Location
+- [ ] Save hive log data to SQLite
+- [ ] Prevent duplicate Hive IDs
+- [ ] Validate all fields before saving
 
-2. Start the app
+### 🌾 Crop Opportunities Screen
+- [ ] Load crop data from local JSON or DB
+- [ ] Calculate and show distance from user
+- [ ] Filter by current & upcoming flowering window
+- [ ] Display:
+  - [ ] Crop name
+  - [ ] Flowering window (start–end)
+  - [ ] Distance
+  - [ ] Recommended hive density
+- [ ] Handle empty state: No crops in range
 
-   ```bash
-    npx expo start
-   ```
+### 📖 Hive History Screen
+- [ ] Show all previously logged hive placements
+- [ ] Allow filtering:
+  - [ ] By Date
+  - [ ] By Crop name (optional if associated)
+  - [ ] By Location radius (bonus)
+- [ ] Allow deleting a hive log
+- [ ] Allow marking a hive as “Ready to Migrate”
 
-In the output, you'll find options to open the app in a
+### 📍 Location Permissions
+- [ ] Request foreground location permission
+- [ ] Handle denial, revoke, or “never ask again” case
+- [ ] Fallback to manual location entry
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### 📡 Offline Functionality
+- [ ] Ensure all core features work without internet
+- [ ] Cache crop data locally
+- [ ] Show offline banner
+- [ ] Add retry mechanism when connection resumes
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 🌟 Bonus Features
+- [ ] Add photo attachment for hive site
+- [ ] Push notification 3 days before crop flowering
+- [ ] Map view for nearby crops and hive sites
+- [ ] Export or simulate sync to BEETRAIL cloud
+- [ ] Highlight hives “Ready to Migrate”
 
-When you're ready, run:
+---
 
-```bash
-npm run reset-project
-```
+## 🧪 Dev & Testing Checklist
+- [ ] Create mock crop JSON data
+- [ ] Insert dummy Hive Logs for testing
+- [ ] Use consistent TypeScript types for all queries
+- [ ] Add debug tools (test insert/delete/view logs)
+- [ ] Handle app resume (background → foreground)
+- [ ] Show UI for:
+  - [ ] No data
+  - [ ] Corrupt storage
+  - [ ] No crops nearby
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🚀 Submission
+- [ ] Public GitHub repo with all code
+- [ ] Include:
+  - [ ] README with setup instructions
+  - [ ] Features implemented
+  - [ ] What’s done vs. pending
+  - [ ] Screen recording demo
+  - [ ] Sync strategy explanation (e.g., for rural network)
