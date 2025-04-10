@@ -1,6 +1,6 @@
 # 🐝 HumbleBee App Development Checklist
 
-This checklist outlines the core and bonus features to build and submit your beekeeping tracker app.
+This checklist outlines the core and bonus features to build in beekeeping tracker app.
 
 ---
 
