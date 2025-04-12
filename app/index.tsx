@@ -1,30 +1,27 @@
 import React, { useEffect, useState } from "react";
-import {
-  ScrollView,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Alert,
-} from "react-native";
+import { ScrollView, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import Card from "../components/ui/Card";
 import * as Location from "expo-location";
 import { useUserLocation } from "@/store/useUserLocation";
+import { useLocationDB } from "@/lib/locationDb"; // or wherever you save it
 
 export default function Home() {
   const router = useRouter();
   const { location, setLocation } = useUserLocation();
-  const [placeName, setPlaceName] = useState("");
   const [locationAllowed, setLocationAllowed] = useState(false);
-  const [locLoading, setLocLoading] = useState(true);
+  const { saveUserLocation, getUserLocation } = useLocationDB();
 
   useEffect(() => {
     (async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
+      const storedLoc = await getUserLocation();
+      if (storedLoc) {
+        setLocation(storedLoc);
+      }
 
+      const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {
         setLocationAllowed(false);
-        setLocLoading(false);
         return;
       }
 
@@ -36,35 +33,46 @@ export default function Home() {
           latitude,
           longitude,
         });
-        if (places.length > 0) {
-          const place = places[0];
-          const formatted = [
-            place.name,
-            place.city,
-            place.region,
-            place.country,
-          ]
-            .filter(Boolean)
-            .join(", ");
-          setPlaceName(formatted);
-        }
-        setLocation({
-          latitude,
-          longitude,
-          placeName,
-        });
-        setLocationAllowed(true);
+        const name = places.length
+          ? [
+              places[0].name,
+              places[0].city,
+              places[0].region,
+              places[0].country,
+            ]
+              .filter(Boolean)
+              .join(", ")
+          : "Unknown Location";
+
+        const finalLoc = { latitude, longitude, placeName: name };
+        setLocation(finalLoc);
+        await saveUserLocation(latitude, longitude, name);
       } catch (error) {
-        console.warn("Error getting location or reverse geocode:", error);
-        setLocationAllowed(false);
-      } finally {
-        setLocLoading(false);
+        console.warn("Error getting location:", error);
       }
     })();
   }, []);
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+      {location && (
+        <TouchableOpacity onPress={() => router.push("/UpdateLocation")}>
+          <Card>
+            <Text style={styles.cardText}>Location Details:</Text>
+            <Text>Latitude: {location.latitude}</Text>
+            <Text>Longitude: {location.longitude}</Text>
+            <Text>Place Name: {location.placeName}</Text>
+          </Card>
+        </TouchableOpacity>
+      )}
+      {!locationAllowed && !location && (
+        <TouchableOpacity onPress={() => router.push("/UpdateLocation")}>
+          <Card>
+            <Text style={styles.cardText}>Enter Location</Text>
+          </Card>
+        </TouchableOpacity>
+      )}
+
       <TouchableOpacity onPress={() => router.push("/HiveLogger")}>
         <Card>
           <Text style={styles.cardText}>Hive Logger</Text>
@@ -82,15 +90,6 @@ export default function Home() {
           <Text style={styles.cardText}>Hive History</Text>
         </Card>
       </TouchableOpacity>
-
-      {location && (
-        <Card>
-          <Text style={styles.cardText}>Location Details:</Text>
-          <Text>Latitude: {location.latitude}</Text>
-          <Text>Longitude: {location.longitude}</Text>
-          <Text>Place Name: {placeName}</Text>
-        </Card>
-      )}
     </ScrollView>
   );
 }

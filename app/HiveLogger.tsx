@@ -4,6 +4,7 @@ import { useSQLiteContext } from "expo-sqlite";
 import { useRouter } from "expo-router";
 import { useUserLocation } from "@/store/useUserLocation";
 import Card from "@/components/ui/Card";
+import { useAppData } from "@/store/useAppData";
 
 export default function HiveLogger() {
   const db = useSQLiteContext();
@@ -18,6 +19,17 @@ export default function HiveLogger() {
   const [manualLat, setManualLat] = useState("");
   const [manualLng, setManualLng] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!location) {
+      Alert.alert("Location Not Set", "Please update your location manually.", [
+        {
+          text: "OK",
+          onPress: () => router.push("/UpdateLocation"),
+        },
+      ]);
+    }
+  }, [location]);
 
   const handleSave = async () => {
     const lat = location?.latitude || parseFloat(manualLat);
@@ -53,6 +65,8 @@ export default function HiveLogger() {
         0,
         null
       );
+
+      await useAppData.getState().markUnsyncedAndMaybeSync(db);
 
       Alert.alert("Hive log saved!");
       router.back();
@@ -98,29 +112,12 @@ export default function HiveLogger() {
       />
 
       <Text style={styles.label}>Location</Text>
-      {location ? (
+      {location && (
         <Text style={styles.locationText}>
           📍{" "}
           {location.placeName ||
             `${location.latitude.toFixed(4)}, ${location.longitude.toFixed(4)}`}
         </Text>
-      ) : (
-        <View>
-          <TextInput
-            style={styles.input}
-            placeholder="Latitude"
-            value={manualLat}
-            onChangeText={setManualLat}
-            keyboardType="numeric"
-          />
-          <TextInput
-            style={styles.input}
-            placeholder="Longitude"
-            value={manualLng}
-            onChangeText={setManualLng}
-            keyboardType="numeric"
-          />
-        </View>
       )}
 
       <Button
@@ -136,8 +133,8 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     gap: 15,
-    marginVertical:30,
-    marginHorizontal:20
+    marginVertical: 30,
+    marginHorizontal: 20,
   },
   label: {
     fontWeight: "bold",

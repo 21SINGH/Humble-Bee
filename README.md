@@ -13,7 +13,7 @@ This checklist outlines the core, bonus, and edge features to build in the beeke
 - [✅] Prevent duplicate Hive IDs
 - [✅] Validate all fields before saving
 - [ ] Associate crop name with hive log (optional but mentioned in filtering criteria)
-- [ ] Empty state: “No hives placed yet”
+- [✅] Empty state: “No hives placed yet”
 
 ### 🌾 Crop Opportunities Screen
 - [✅] Load crop data from local DB or mock JSON
@@ -26,7 +26,7 @@ This checklist outlines the core, bonus, and edge features to build in the beeke
   - [✅] Distance
   - [✅] Recommended hive density
   - [ ] Label for flowering status: “Flowering now” / “Upcoming”
-- [ ] Handle empty state: No crops in range
+- [✅] Handle empty state: No crops in range
 
 ### 📖 Hive History Screen
 - [✅] Show all previously logged hive placements
@@ -36,20 +36,20 @@ This checklist outlines the core, bonus, and edge features to build in the beeke
   - [ ] By Location radius (bonus)
 - [✅] Allow deleting a hive log
 - [✅] Allow marking a hive as “Ready to Migrate”
-- [ ] UI for empty history
+- [✅] UI for empty history
 - [ ] Crop name display (if associated)
 
 ### 📍 Location Permissions & Management
 - [✅] Request foreground location permission
-- [ ] Handle denial, revoke, or “never ask again” case
-- [ ] Fallback to manual location entry
-- [ ] Save and reuse location between screens (avoid repeated fetch)
+- [✅] Handle denial, revoke, or “never ask again” case
+- [✅] Fallback to manual location entry
+- [✅] Save and reuse location between screens (avoid repeated fetch)
 
 ### 📡 Offline Functionality
 - [✅] Ensure all core features work without internet
 - [✅] Cache crop data locally
-- [ ] Show offline banner: “You are offline”
-- [ ] Add retry mechanism when connection resumes
+- [✅] Show offline banner: “You are offline”
+- [✅] Add retry mechanism when connection resumes
 
 ---
 
@@ -57,30 +57,30 @@ This checklist outlines the core, bonus, and edge features to build in the beeke
 - [ ] Add photo attachment for hive site
 - [ ] Push notification 3 days before crop flowering
 - [ ] Map view for nearby crops and hive sites
-- [ ] Export or simulate sync to BEETRAIL cloud
-- [ ] Highlight hives marked “Ready to Migrate”
+- [✅] logging the data in sqlite / Export or simulate sync to BEETRAIL cloud
+- [✅] Highlight hives marked “Ready to Migrate”
 
 ---
 
 ## 🧪 Dev & Testing Checklist
 - [✅] Insert dummy Hive Logs for testing
-- [ ] Create mock crop JSON data (with structure provided)
+- [✅] Create mock crop JSON data (with structure provided)
 - [✅] Use consistent TypeScript types for all queries
 - [ ] Add debug tools (test insert/delete/view logs)
 - [ ] Handle app resume (background → foreground)
 - [ ] Handle edge cases:
-  - [ ] No data
+  - [✅] No data
   - [ ] Corrupt storage (try-catch fallback)
-  - [ ] No crops nearby
+  - [✅] No crops nearby
 - [ ] Optional config/env setup to switch mock/live mode
 
 ---
 
 ## 🚀 Submission
-- [ ] Public GitHub repo with all code
+- [✅] Public GitHub repo with all code
 - [ ] Include:
-  - [ ] `README.md` with setup instructions
-  - [ ] Features implemented
-  - [ ] What’s done vs. pending
+  - [✅] `README.md` with setup instructions
+  - [✅] Features implemented
+  - [✅] What’s done vs. pending
   - [ ] Screen recording demo
   - [ ] Sync strategy explanation (e.g., for rural network)

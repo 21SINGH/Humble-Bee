@@ -4,9 +4,6 @@ type Location = {
     latitude: number;
     longitude: number;
     placeName?: string;
-    state?: string;
-    country?: string;
-    village?: string;
   };
   
   type UserLocationStore = {
