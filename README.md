@@ -3,18 +3,6 @@
 This checklist outlines the core, bonus, and edge features to build in the beekeeping tracker app.
 
 ---
-## 📱 Screenshots
-Here are some screenshots of the HumbleBee app:
-
-<img src="assets/images/Home.jpeg" alt="Home" width="200"/>
-
-<img src="assets/images/enter%20hive.jpeg" alt="Enter Hive" width="200"/>
-
-<img src="assets/images/crop%20opportunities.jpeg" alt="Crop Opportunity" width="200"/>
-
-<img src="assets/images/hive%20history.jpeg" alt="Hive History" width="200"/>
-
-
 ## 🎥 Demo Video
 You can view a demo of the app here:
 
@@ -27,7 +15,16 @@ You can view a demo of the app here:
 <img src="assets/images/permision given .gif" alt="Mo permission" width="200"/>
 
 
+## 📱 Screenshots
+Here are some screenshots of the HumbleBee app:
 
+<img src="assets/images/Home.jpeg" alt="Home" width="200"/>
+
+<img src="assets/images/enter%20hive.jpeg" alt="Enter Hive" width="200"/>
+
+<img src="assets/images/crop%20opportunities.jpeg" alt="Crop Opportunity" width="200"/>
+
+<img src="assets/images/hive%20history.jpeg" alt="Hive History" width="200"/>
 
 
 ## ✅ Core Functionality
