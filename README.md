@@ -18,9 +18,15 @@ Here are some screenshots of the HumbleBee app:
 ## 🎥 Demo Video
 You can view a demo of the app here:
 
-[Pemission given, online / offline](assets/images/permision%20given%20.mp4)
+### no permission given
 
-[Pemission denied](assets/images/no-permisiion%20.mp4)
+<img src="assets/images/no-permisiion .gif" alt="Mo permission" width="200"/>
+
+### permission given
+
+<img src="assets/images/permision given .gif" alt="Mo permission" width="200"/>
+
+
 
 
 
