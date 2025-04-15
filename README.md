@@ -3,8 +3,79 @@
 This checklist outlines the core, bonus, and edge features to build in the beekeeping tracker app.
 
 ---
+## 📱 Screenshots
+Here are some screenshots of the HumbleBee app:
+
+<img src="assets/images/Home.jpeg" alt="Home" width="200"/>
+
+<img src="assets/images/enter%20hive.jpeg" alt="Enter Hive" width="200"/>
+
+<img src="assets/images/crop%20opportunities.jpeg" alt="Crop Opportunity" width="200"/>
+
+<img src="assets/images/hive%20history.jpeg" alt="Hive History" width="200"/>
+
+
+## 🎥 Demo Video
+You can view a demo of the app here:
+
+[Pemission given, online / offline](assets/images/permision%20given%20.mp4)
+
+[Pemission denied](assets/images/no-permisiion%20.mp4)
+
+
 
 ## ✅ Core Functionality
+
+## 🔄 Sync Strategy for Rural Connectivity
+
+The **HumbleBee** app is built to function reliably in **low-connectivity or offline environments** using **Expo SQLite** and `@react-native-community/netinfo`.
+
+### 🔄 Sync Strategy for Rural Connectivity
+
+The **HumbleBee** app is built to function reliably in **low-connectivity or offline environments** using **Expo SQLite** and `@react-native-community/netinfo`.
+
+#### ⚙️ How Sync Works
+
+1. **Local-first, Offline-Ready**  
+   All core features work fully offline. The app stores data using SQLite, allowing users to log hive activity, view crop info, and manage location without an internet connection.
+
+2. **Change Tracking**  
+   Sync status is tracked using the `AppMeta` table with a key:
+
+   This marks data as unsynced when changes are made while offline.
+
+3. **Auto Sync on Network Available**  
+When the device regains internet connectivity:
+- The app checks network status using `NetInfo`.
+- It calls `checkAndLogUnsyncedChanges()` to log or sync pending data.
+- Once synced, the unsynced flag is reset:
+  ```
+  INSERT OR REPLACE INTO AppMeta (key, value) VALUES ('has_unsynced_changes', '0');
+  ```
+
+4. **Offline Handling**  
+If changes occur while offline:
+- The app displays a message:  
+  > 📴 You are offline. Your changes will be synced when you're back online.
+
+5. **On App Resume or Launch**  
+When the app starts or resumes:
+- `checkAndLogUnsyncedChanges()` is triggered to detect unsynced data and attempt synchronization if a connection is available.
+
+6. **Future Cloud Sync Support**  
+The current implementation logs unsynced data locally but is designed for future integration with:
+- REST APIs 
+#### 🧪 Developer Notes
+
+- ✅ Sync is triggered when:
+- New hive data is added (`markUnsyncedAndMaybeSync`)
+- App starts or resumes with an internet connection (`checkAndLogUnsyncedChanges`)
+- 🛠 Designed to support rural beekeepers working in areas with limited or unstable network coverage.
+
+---
+
+
+
 
 ### 🐝 Hive Logger Screen
 - [✅] Create Hive Log screen UI
@@ -82,5 +153,5 @@ This checklist outlines the core, bonus, and edge features to build in the beeke
   - [✅] `README.md` with setup instructions
   - [✅] Features implemented
   - [✅] What’s done vs. pending
-  - [ ] Screen recording demo
+  - [✅] Screen recording demo
   - [ ] Sync strategy explanation (e.g., for rural network)
